@@ -1,8 +1,15 @@
 """
 NeoQuery Backend - FastAPI Application
 """
+from pathlib import Path
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
+
+# Load .env file from backend directory
+backend_dir = Path(__file__).parent
+env_path = backend_dir / ".env"
+load_dotenv(dotenv_path=env_path)
 
 from app.routers import upload, ask, health
 
