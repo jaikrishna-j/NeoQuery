@@ -6,6 +6,9 @@
   --neon-blue: #00d4ff;
   --neon-blue-dark: #0099cc;
   --neon-blue-light: #33ddff;
+  --surface: #111111;
+  --surface-elevated: #1a1a1a;
+  --border: #2a2a2a;
 }
 
 @theme inline {
@@ -21,39 +24,79 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), system-ui, sans-serif;
+  overflow-x: hidden;
 }
 
-/* Neon glow effects (hover and focus only) */
+/* Neon glow effects */
+.neon-glow {
+  transition: all 0.3s ease;
+}
+
 .neon-glow:hover {
   text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 30px var(--neon-blue);
-  transition: text-shadow 0.3s ease;
 }
 
 .neon-glow:focus {
-  outline: 2px solid var(--neon-blue);
-  outline-offset: 2px;
-  box-shadow: 0 0 10px var(--neon-blue);
+  outline: none;
+  box-shadow: none;
 }
 
-/* Custom scrollbar */
+/* Neon border glow */
+.neon-border {
+  position: relative;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.neon-border:hover {
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.3), 0 0 20px rgba(0, 212, 255, 0.1);
+}
+
+/* Custom scrollbar - ChatGPT style */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #333;
-  border-radius: 4px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #444;
+  background-clip: padding-box;
 }
 
-/* Animation delay utilities */
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Message animations */
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-enter {
+  animation: messageSlideIn 0.3s ease-out;
+}
+
+/* Pulse animation for loading */
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
@@ -63,9 +106,22 @@ body {
   }
 }
 
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 212, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 30px rgba(0, 212, 255, 0.4);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
 /* Smooth transitions for interactive elements */
 * {
-  transition-property: color, background-color, border-color, opacity, transform;
+  transition-property: color, background-color, border-color, opacity, transform, box-shadow;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -74,4 +130,101 @@ body {
 :focus-visible {
   outline: 2px solid var(--neon-blue);
   outline-offset: 2px;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-blue-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Button hover effects */
+.btn-neon {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-neon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(0, 212, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-neon:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Input focus glow */
+.input-focus:focus {
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1), 0 0 10px rgba(0, 212, 255, 0.2);
+}
+
+/* Chat input placeholder left alignment */
+.chat-input {
+  text-align: left;
+}
+
+.chat-input::placeholder {
+  text-align: left;
+}
+
+/* Chat message text alignment */
+.chat-message-text {
+  text-align: left !important;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Remove focus outline for chat input - permanently */
+.chat-input:focus,
+.chat-input:focus-visible,
+.chat-input:active,
+.chat-input:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.chat-input-container,
+.chat-input-container:focus,
+.chat-input-container:focus-within,
+.chat-input-container:active,
+.chat-input-container *:focus,
+.chat-input-container *:focus-visible {
+  border-color: #1f1f1f !important;
+  box-shadow: none !important;
+  outline: none !important;
+  --tw-ring-width: 0 !important;
+  --tw-ring-offset-width: 0 !important;
+  --tw-ring-color: transparent !important;
+}
+
+.chat-input-container:hover {
+  border-color: #2a2a2a !important;
+}
+
+/* Override any global focus-visible styles for chat input */
+.chat-input-container:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }

@@ -93,7 +93,6 @@ export default function FileUpload({ onFileSelect, isUploading = false }: FileUp
       if (file && !isUploading) {
         handleFile(file);
       }
-      // Reset input so same file can be selected again
       e.target.value = "";
     },
     [handleFile, isUploading]
@@ -107,10 +106,10 @@ export default function FileUpload({ onFileSelect, isUploading = false }: FileUp
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        className={`border-2 border-dashed rounded-lg p-8 text-center transition-all duration-200 ${
+        className={`relative border-2 border-dashed rounded-2xl p-6 sm:p-8 lg:p-12 text-center transition-all duration-300 ${
           isDragging
-            ? "border-[#00d4ff] bg-[#00d4ff]/10 scale-[1.02]"
-            : "border-[#333] hover:border-[#555]"
+            ? "border-[#00d4ff] bg-[#00d4ff]/10 scale-[1.01] shadow-lg shadow-[#00d4ff]/20"
+            : "border-[#2a2a2a] bg-[#111] hover:border-[#00d4ff]/50 hover:bg-[#1a1a1a]"
         } ${isUploading ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
       >
         <input
@@ -126,44 +125,55 @@ export default function FileUpload({ onFileSelect, isUploading = false }: FileUp
           className={`cursor-pointer block ${isUploading ? "pointer-events-none" : ""}`}
         >
           {isUploading ? (
-            <>
-              <div className="text-4xl mb-4 animate-pulse">⏳</div>
-              <p className="text-lg font-semibold mb-2 text-[#00d4ff]">
-                Processing...
-              </p>
-              <p className="text-sm text-[#888]">
-                Uploading and indexing your file. This may take a moment.
-              </p>
-            </>
+            <div className="space-y-4">
+              <div className="flex justify-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 border-4 border-[#00d4ff] border-t-transparent rounded-full animate-spin"></div>
+              </div>
+              <div>
+                <p className="text-lg sm:text-xl font-semibold mb-2 text-[#00d4ff]">
+                  Processing...
+                </p>
+                <p className="text-sm sm:text-base text-[#888] px-4">
+                  Uploading and indexing your file. This may take a moment.
+                </p>
+              </div>
+            </div>
           ) : (
-            <>
-              <div className="text-4xl mb-4">📎</div>
-              <p className="text-lg font-semibold mb-2">
-                {selectedFile ? selectedFile.name : "Drag and drop a file here"}
-              </p>
-              <p className="text-sm text-[#888] mb-4">
-                or click to browse
-              </p>
-              <p className="text-xs text-[#666]">
-                Supported: {supportedExtensions}
-              </p>
-            </>
+            <div className="space-y-4">
+              <div className="flex justify-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-[#00d4ff]/20 to-[#0099cc]/20 border border-[#00d4ff]/30 flex items-center justify-center text-4xl sm:text-5xl">
+                  📎
+                </div>
+              </div>
+              <div>
+                <p className="text-lg sm:text-xl font-semibold mb-2 text-[#e5e5e5]">
+                  {selectedFile ? selectedFile.name : "Drop your file here"}
+                </p>
+                <p className="text-sm sm:text-base text-[#888] mb-4">
+                  or <span className="text-[#00d4ff] underline">click to browse</span>
+                </p>
+                <p className="text-xs sm:text-sm text-[#666] px-4 break-words">
+                  Supported: {supportedExtensions}
+                </p>
+              </div>
+            </div>
           )}
         </label>
       </div>
 
       {/* Error message */}
       {error && (
-        <div className="mt-4 p-4 bg-red-500/10 border border-red-500/30 rounded-lg animate-in fade-in slide-in-from-top-2 duration-300">
-          <p className="text-sm text-red-400">{error}</p>
+        <div className="mt-4 p-4 bg-red-500/10 border border-red-500/30 rounded-xl animate-in fade-in slide-in-from-top-2 duration-300">
+          <p className="text-sm text-red-400 break-words">{error}</p>
         </div>
       )}
 
       {/* File warning */}
       {selectedFile && getFileWarning(selectedFile.name) && !isUploading && (
-        <div className="mt-4 p-4 bg-[#00d4ff]/10 border border-[#00d4ff]/30 rounded-lg animate-in fade-in duration-300">
-          <p className="text-sm text-[#00d4ff]">
-            ⚠️ {getFileWarning(selectedFile.name)}
+        <div className="mt-4 p-4 bg-[#00d4ff]/10 border border-[#00d4ff]/30 rounded-xl animate-in fade-in duration-300">
+          <p className="text-sm text-[#00d4ff] break-words flex items-start gap-2">
+            <span>⚠️</span>
+            <span>{getFileWarning(selectedFile.name)}</span>
           </p>
         </div>
       )}

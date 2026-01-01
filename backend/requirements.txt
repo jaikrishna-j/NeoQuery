@@ -1,7 +1,6 @@
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
 openai>=1.0.0
-bytez
 pydantic>=2.5.0
 python-multipart==0.0.6
 faiss-cpu==1.13.2
