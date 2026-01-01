@@ -1,6 +1,7 @@
 """
 NeoQuery Backend - FastAPI Application
 """
+import os
 from pathlib import Path
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -19,10 +20,18 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# CORS configuration - allow frontend origin from environment variable
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "*")
+if allowed_origins == "*":
+    origins = ["*"]
+else:
+    # Split comma-separated origins
+    origins = [origin.strip() for origin in allowed_origins.split(",")]
+
 # Enable CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, specify actual origins
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
