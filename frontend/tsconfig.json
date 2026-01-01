@@ -14,15 +14,14 @@
     "jsx": "react-jsx",
     "incremental": true,
     "baseUrl": ".",
+    "types": ["node"],
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@/components/*": ["./components/*"],
-      "@/lib/*": ["./lib/*"]
+      "@/*": ["./*"]
     }
   },
   "include": [
