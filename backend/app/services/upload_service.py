@@ -6,7 +6,7 @@ from typing import Tuple
 from app.services.file_type_detector import FileTypeDetector, FileType
 from app.services.ingestion_pipelines import get_pipeline
 from app.services.text_chunker import TextChunker
-from app.services.openai_client import OpenAIClient
+from app.services.openrouter_client import OpenRouterClient
 from app.repositories.faiss_repository import FAISSRepository
 
 
@@ -16,7 +16,7 @@ class UploadService:
     def __init__(
         self,
         faiss_repo: FAISSRepository,
-        openai_client: OpenAIClient,
+        openai_client: OpenRouterClient,
         chunker: TextChunker = None
     ):
         """
@@ -24,7 +24,7 @@ class UploadService:
         
         Args:
             faiss_repo: FAISS repository instance
-            openai_client: OpenAI client instance
+            openai_client: OpenRouter client instance
             chunker: Text chunker instance (optional, uses default if not provided)
         """
         self.faiss_repo = faiss_repo

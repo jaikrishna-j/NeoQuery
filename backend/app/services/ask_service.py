@@ -3,19 +3,19 @@ Ask service for question answering
 """
 from typing import List, Dict
 from app.services.retrieval_service import RetrievalService
-from app.services.openai_client import OpenAIClient
+from app.services.openrouter_client import OpenRouterClient
 
 
 class AskService:
     """Service for generating answers from retrieved context"""
     
-    def __init__(self, retrieval_service: RetrievalService, openai_client: OpenAIClient):
+    def __init__(self, retrieval_service: RetrievalService, openai_client: OpenRouterClient):
         """
         Initialize ask service
         
         Args:
             retrieval_service: Retrieval service instance
-            openai_client: OpenAI client instance
+            openai_client: OpenRouter client instance
         """
         self.retrieval_service = retrieval_service
         self.openai_client = openai_client
@@ -78,7 +78,7 @@ Question: {question}
 
 Please provide a clear and concise answer based on the context above."""
         
-        # Generate answer using OpenAI
+        # Generate answer using OpenRouter
         messages = [
             {"role": "user", "content": user_message}
         ]

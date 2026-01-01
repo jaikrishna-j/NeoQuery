@@ -13,7 +13,7 @@ env_path = backend_dir / ".env"
 load_dotenv(dotenv_path=env_path)
 
 
-class OpenAIClient:
+class OpenRouterClient:
     """Wrapper for LLM API operations (using OpenRouter API for all operations)"""
     
     def __init__(self):
@@ -129,3 +129,4 @@ class OpenAIClient:
                 )
             else:
                 raise Exception(f"Error generating chat completion: {error_msg}")
+

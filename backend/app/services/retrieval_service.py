@@ -3,19 +3,19 @@ Retrieval service for querying and ranking results
 """
 from typing import List, Dict
 from app.repositories.faiss_repository import FAISSRepository
-from app.services.openai_client import OpenAIClient
+from app.services.openrouter_client import OpenRouterClient
 
 
 class RetrievalService:
     """Service for retrieving and ranking relevant chunks"""
     
-    def __init__(self, faiss_repo: FAISSRepository, openai_client: OpenAIClient):
+    def __init__(self, faiss_repo: FAISSRepository, openai_client: OpenRouterClient):
         """
         Initialize retrieval service
         
         Args:
             faiss_repo: FAISS repository instance
-            openai_client: OpenAI client instance
+            openai_client: OpenRouter client instance
         """
         self.faiss_repo = faiss_repo
         self.openai_client = openai_client

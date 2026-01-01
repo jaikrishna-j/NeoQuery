@@ -3,7 +3,7 @@ Dependency injection for FastAPI
 """
 from functools import lru_cache
 from app.repositories.faiss_repository import FAISSRepository
-from app.services.openai_client import OpenAIClient
+from app.services.openrouter_client import OpenRouterClient
 from app.services.retrieval_service import RetrievalService
 from app.services.upload_service import UploadService
 from app.services.ask_service import AskService
@@ -16,9 +16,9 @@ def get_faiss_repository() -> FAISSRepository:
 
 
 @lru_cache()
-def get_openai_client() -> OpenAIClient:
-    """Get OpenAI client instance (singleton)"""
-    return OpenAIClient()
+def get_openai_client() -> OpenRouterClient:
+    """Get OpenRouter client instance (singleton)"""
+    return OpenRouterClient()
 
 
 def get_retrieval_service() -> RetrievalService:

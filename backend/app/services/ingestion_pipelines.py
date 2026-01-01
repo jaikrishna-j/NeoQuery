@@ -37,6 +37,14 @@ except ImportError:
     MOVIEPY_AVAILABLE = False
     VideoFileClip = None
 
+# Check if Tesseract OCR is available
+TESSERACT_AVAILABLE = False
+try:
+    pytesseract.get_tesseract_version()
+    TESSERACT_AVAILABLE = True
+except Exception:
+    TESSERACT_AVAILABLE = False
+
 
 class IngestionPipeline(ABC):
     """Base class for ingestion pipelines"""
@@ -181,6 +189,16 @@ class ImageIngestionPipeline(IngestionPipeline):
     
     def _extract_with_ocr(self, file_content: bytes) -> str:
         """Extract text using Tesseract OCR"""
+        if not TESSERACT_AVAILABLE:
+            raise Exception(
+                "Tesseract OCR is not installed or not in your PATH. "
+                "To fix this, install Tesseract OCR: "
+                "Windows: Download from https://github.com/UB-Mannheim/tesseract/wiki or run 'choco install tesseract'. "
+                "macOS: Run 'brew install tesseract'. "
+                "Linux: Run 'sudo apt-get install tesseract-ocr' (Ubuntu/Debian) or 'sudo yum install tesseract' (RHEL/CentOS). "
+                "After installation, restart the backend server and ensure tesseract is in your system PATH."
+            )
+        
         try:
             image = Image.open(io.BytesIO(file_content))
             # Convert to RGB if necessary
@@ -189,7 +207,17 @@ class ImageIngestionPipeline(IngestionPipeline):
             text = pytesseract.image_to_string(image)
             return text.strip()
         except Exception as e:
-            raise Exception(f"OCR extraction failed: {str(e)}")
+            error_msg = str(e)
+            if "tesseract" in error_msg.lower() and ("not found" in error_msg.lower() or "not installed" in error_msg.lower()):
+                raise Exception(
+                    "Tesseract OCR is not installed or not in your PATH. "
+                    "To fix this, install Tesseract OCR: "
+                    "Windows: Download from https://github.com/UB-Mannheim/tesseract/wiki or run 'choco install tesseract'. "
+                    "macOS: Run 'brew install tesseract'. "
+                    "Linux: Run 'sudo apt-get install tesseract-ocr' (Ubuntu/Debian) or 'sudo yum install tesseract' (RHEL/CentOS). "
+                    "After installation, restart the backend server and ensure tesseract is in your system PATH."
+                )
+            raise Exception(f"OCR extraction failed: {error_msg}")
 
 
 class AudioIngestionPipeline(IngestionPipeline):
