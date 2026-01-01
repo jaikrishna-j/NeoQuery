@@ -17,7 +17,7 @@ export default function Home() {
           </p>
           <p className="text-base sm:text-lg text-[#888] mb-8 sm:mb-12 max-w-2xl mx-auto px-4 leading-relaxed">
             Upload your documents, images, audio, and video files. Ask questions and get intelligent answers 
-            powered by OpenAI and advanced retrieval-augmented generation.
+            powered by OpenRouter API and advanced retrieval-augmented generation.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
             <Link
@@ -72,7 +72,7 @@ export default function Home() {
             </div>
             <h3 className="text-xl sm:text-2xl font-semibold mb-3 text-[#00d4ff]">Smart Answers</h3>
             <p className="text-sm sm:text-base text-[#888] leading-relaxed">
-              Get accurate, contextual answers powered by OpenAI&apos;s advanced language models.
+              Get accurate, contextual answers powered by advanced language models via OpenRouter API.
             </p>
           </div>
         </div>

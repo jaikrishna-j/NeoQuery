@@ -36,7 +36,7 @@ export default function HowItWorksPage() {
                 <h3 className="text-lg sm:text-xl font-semibold mb-2">2. Text Chunking & Embedding</h3>
                 <p className="text-sm sm:text-base text-[#b0b0b0]">
                   The extracted text is split into smaller chunks for efficient processing. Each chunk is 
-                  then converted into a vector embedding using OpenAI&apos;s embedding models. These 
+                  then converted into a vector embedding using OpenAI&apos;s embedding models via OpenRouter API. These 
                   embeddings capture the semantic meaning of the text.
                 </p>
               </div>
@@ -60,7 +60,7 @@ export default function HowItWorksPage() {
               <div className="border-l-4 border-[#00d4ff] pl-4 sm:pl-6">
                 <h3 className="text-lg sm:text-xl font-semibold mb-2">5. Answer Generation</h3>
                 <p className="text-sm sm:text-base text-[#b0b0b0]">
-                  The retrieved context is passed to OpenAI&apos;s chat models (GPT-4) along with your 
+                  The retrieved context is passed to advanced language models via OpenRouter API along with your 
                   question. The model generates an accurate answer based on the retrieved information, 
                   citing sources when applicable.
                 </p>
@@ -69,11 +69,11 @@ export default function HowItWorksPage() {
           </section>
 
           <section>
-            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-[#00d4ff]">Powered by OpenAI</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-[#00d4ff]">Powered by OpenRouter API</h2>
             <p className="text-sm sm:text-base text-[#b0b0b0] leading-relaxed">
-              NeoQuery uses OpenAI&apos;s state-of-the-art models for both embeddings and chat completion. 
+              NeoQuery uses OpenRouter API to access state-of-the-art language models for both embeddings and chat completion. 
               The system uses <code className="bg-[#1a1a1a] px-2 py-1 rounded text-[#00d4ff] text-xs sm:text-sm">text-embedding-3-small</code> for 
-              generating embeddings and <code className="bg-[#1a1a1a] px-2 py-1 rounded text-[#00d4ff] text-xs sm:text-sm">GPT-4</code> for 
+              generating embeddings and advanced language models via OpenRouter for 
               generating answers. This ensures high-quality, accurate responses to your questions.
             </p>
           </section>
