@@ -163,7 +163,7 @@ export default function ChatPage() {
         {error && appState === "error" && (
           <div className="px-4 sm:px-6 lg:px-8 pt-4">
             <div className="p-3 sm:p-4 bg-red-500/10 border border-red-500/30 rounded-xl backdrop-blur-sm animate-in fade-in slide-in-from-top-2 duration-300 shadow-lg">
-              <p className="text-xs sm:text-sm text-red-400 break-words font-medium">{error}</p>
+              <p className="text-xs sm:text-sm text-red-400 wrap-break-word font-medium">{error}</p>
             </div>
           </div>
         )}
@@ -198,7 +198,7 @@ export default function ChatPage() {
         </div>
 
         {/* Chat input form - Modern design */}
-        <div className="border-t border-[#1a1a1a] bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a] to-[#0a0a0a] backdrop-blur-xl">
+        <div className="border-t border-[#1a1a1a] bg-linear-to-b from-[#0a0a0a] via-[#0a0a0a] to-[#0a0a0a] backdrop-blur-xl">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <form onSubmit={handleSubmit} className="relative">
               {/* Status indicator - integrated into input area */}
@@ -234,7 +234,7 @@ export default function ChatPage() {
                   <button
                     type="submit"
                     disabled={!canAskQuestions || !input.trim() || isProcessing}
-                    className="flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-[#00d4ff] to-[#0099cc] text-white flex items-center justify-center hover:from-[#00b8e6] hover:to-[#0088bb] disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 hover:scale-110 active:scale-95 shadow-lg shadow-[#00d4ff]/20 hover:shadow-[#00d4ff]/40 disabled:hover:scale-100 disabled:hover:shadow-lg"
+                    className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-linear-to-br from-[#00d4ff] to-[#0099cc] text-white flex items-center justify-center hover:from-[#00b8e6] hover:to-[#0088bb] disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 hover:scale-110 active:scale-95 shadow-lg shadow-[#00d4ff]/20 hover:shadow-[#00d4ff]/40 disabled:hover:scale-100 disabled:hover:shadow-lg"
                     aria-label="Send message"
                   >
                     {appState === "thinking" ? (
