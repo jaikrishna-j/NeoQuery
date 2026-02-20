@@ -30,10 +30,10 @@ class OpenRouterClient:
         )
         
         # Model names - using OpenRouter models
-        # For chat: using a free model, can be changed to gpt-4o or other models
-        self.chat_model = "meta-llama/llama-3.3-70b-instruct:free"  # Free model
-        # For embeddings: OpenRouter supports OpenAI embedding models
-        self.embedding_model = "text-embedding-3-small"
+        # For chat: configurable via env, defaults to Trinity large free model
+        self.chat_model = os.getenv("OPENROUTER_CHAT_MODEL", "arcee-ai/trinity-large-preview:free")
+        # For embeddings: OpenRouter supports OpenAI-compatible embedding models
+        self.embedding_model = os.getenv("OPENROUTER_EMBEDDING_MODEL", "text-embedding-3-small")
     
     def generate_embeddings(self, texts: List[str]) -> List[List[float]]:
         """
