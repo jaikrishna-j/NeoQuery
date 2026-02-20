@@ -1,7 +1,7 @@
 export default function HowItWorksPage() {
   return (
-    <main className="min-h-screen">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+    <main className="min-h-screen bg-[#02040a]">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 lg:pt-40 pb-16">
         <h1 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center">How It Works</h1>
 
         <div className="space-y-8 sm:space-y-12">

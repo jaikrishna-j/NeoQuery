@@ -3,9 +3,11 @@ import SplashCursor from "@/components/SplashCursor";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-gradient-to-b from-[#0a0a0a] via-[#0f0f0f] to-[#0a0a0a]">
+    <main className="relative min-h-screen bg-[#02040a]">
+      {/* Fluid cursor always behind content */}
       <SplashCursor />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+      {/* Foreground content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 lg:pt-40 pb-16">
         {/* Hero Section */}
         <div className="text-center mb-16 sm:mb-20 lg:mb-24">
           <div className="inline-block mb-6">
@@ -49,8 +51,8 @@ export default function Home() {
         </div>
 
         {/* Features Grid */}
-        <div className="mt-16 sm:mt-24 lg:mt-32 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-0">
-          <div className="group p-6 sm:p-8 bg-gradient-to-br from-[#111] to-[#0a0a0a] border border-[#2a2a2a] rounded-2xl hover:border-[#00d4ff]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#00d4ff]/10 hover:-translate-y-1">
+        <div className="mt-10 sm:mt-16 lg:mt-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-0">
+          <div className="group p-6 sm:p-8 glass border border-[#2a2a2a]/70 rounded-2xl hover:border-[#00d4ff]/60 transition-all duration-300 hover:shadow-[0_0_40px_rgba(0,212,255,0.25)] hover:-translate-y-1">
             <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-gradient-to-br from-[#00d4ff]/20 to-[#0099cc]/20 border border-[#00d4ff]/30 flex items-center justify-center text-3xl sm:text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
               📄
             </div>
@@ -59,7 +61,7 @@ export default function Home() {
               Upload documents, images, audio, and video files. We handle PDF, DOCX, images, audio, and more.
             </p>
           </div>
-          <div className="group p-6 sm:p-8 bg-gradient-to-br from-[#111] to-[#0a0a0a] border border-[#2a2a2a] rounded-2xl hover:border-[#00d4ff]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#00d4ff]/10 hover:-translate-y-1">
+          <div className="group p-6 sm:p-8 glass border border-[#2a2a2a]/70 rounded-2xl hover:border-[#00d4ff]/60 transition-all duration-300 hover:shadow-[0_0_40px_rgba(0,212,255,0.25)] hover:-translate-y-1">
             <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-gradient-to-br from-[#00d4ff]/20 to-[#0099cc]/20 border border-[#00d4ff]/30 flex items-center justify-center text-3xl sm:text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
               🔍
             </div>
@@ -68,7 +70,7 @@ export default function Home() {
               Advanced RAG technology finds the most relevant information from your uploaded files.
             </p>
           </div>
-          <div className="group p-6 sm:p-8 bg-gradient-to-br from-[#111] to-[#0a0a0a] border border-[#2a2a2a] rounded-2xl hover:border-[#00d4ff]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#00d4ff]/10 hover:-translate-y-1 sm:col-span-2 lg:col-span-1">
+          <div className="group p-6 sm:p-8 glass border border-[#2a2a2a]/70 rounded-2xl hover:border-[#00d4ff]/60 transition-all duration-300 hover:shadow-[0_0_40px_rgba(0,212,255,0.25)] hover:-translate-y-1 sm:col-span-2 lg:col-span-1">
             <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-gradient-to-br from-[#00d4ff]/20 to-[#0099cc]/20 border border-[#00d4ff]/30 flex items-center justify-center text-3xl sm:text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
               💬
             </div>

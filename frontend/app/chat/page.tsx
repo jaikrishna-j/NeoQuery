@@ -146,9 +146,10 @@ export default function ChatPage() {
   const isProcessing = appState === "uploading" || appState === "thinking";
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#0a0a0a]">
+    <main className="relative min-h-screen flex flex-col bg-[#02040a]">
       {/* Main Chat Container */}
-      <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full">
+      <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full px-3 sm:px-4 pt-28 sm:pt-32 lg:pt-36 pb-8">
+        <div className="glass rounded-3xl border border-[#2a2a2a]/70 shadow-[0_0_60px_rgba(0,0,0,0.6)] flex-1 flex flex-col">
         {/* File Upload Section - Collapsible */}
         {uploadedFiles.length === 0 && (
           <div className="px-4 sm:px-6 lg:px-8 pt-6 pb-4">
@@ -169,7 +170,7 @@ export default function ChatPage() {
         )}
 
         {/* Chat messages area - Modern design */}
-        <div className="flex-1 overflow-y-auto px-4 sm:px-6 lg:px-8 py-8 min-h-0">
+        <div className="flex-1 overflow-y-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 min-h-0">
           <div className="max-w-3xl mx-auto">
             {messages.length === 0 && appState !== "uploading" ? (
               <EmptyState
@@ -198,8 +199,8 @@ export default function ChatPage() {
         </div>
 
         {/* Chat input form - Modern design */}
-        <div className="border-t border-[#1a1a1a] bg-linear-to-b from-[#0a0a0a] via-[#0a0a0a] to-[#0a0a0a] backdrop-blur-xl">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="border-t border-[#1a1a1a]/60 bg-[#050811]/80 backdrop-blur-2xl rounded-3xl rounded-t-none">
+          <div className="max-w-3xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
             <form onSubmit={handleSubmit} className="relative">
               {/* Status indicator - integrated into input area */}
               {uploadedFiles.length > 0 && (
@@ -214,7 +215,7 @@ export default function ChatPage() {
               
               {/* Input container with modern design */}
               <div className="relative">
-                <div className="chat-input-container relative flex items-end gap-2 bg-[#111111] border border-[#1f1f1f] rounded-2xl p-3 sm:p-4 shadow-2xl">
+                <div className="chat-input-container relative flex items-end gap-2 bg-[#0b0f1a]/80 border border-[#1f1f1f]/80 rounded-2xl p-3 sm:p-4 shadow-[0_0_40px_rgba(0,0,0,0.8)] backdrop-blur-xl">
                   <textarea
                     ref={inputRef}
                     value={input}
@@ -234,7 +235,7 @@ export default function ChatPage() {
                   <button
                     type="submit"
                     disabled={!canAskQuestions || !input.trim() || isProcessing}
-                    className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-linear-to-br from-[#00d4ff] to-[#0099cc] text-white flex items-center justify-center hover:from-[#00b8e6] hover:to-[#0088bb] disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 hover:scale-110 active:scale-95 shadow-lg shadow-[#00d4ff]/20 hover:shadow-[#00d4ff]/40 disabled:hover:scale-100 disabled:hover:shadow-lg"
+                    className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-[#00d4ff] to-[#0099cc] text-white flex items-center justify-center hover:from-[#00b8e6] hover:to-[#0088bb] disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 hover:scale-110 active:scale-95 shadow-lg shadow-[#00d4ff]/30 hover:shadow-[#00d4ff]/50 disabled:hover:scale-100 disabled:hover:shadow-lg"
                     aria-label="Send message"
                   >
                     {appState === "thinking" ? (
@@ -256,8 +257,8 @@ export default function ChatPage() {
                 </div>
               </div>
               
-              {/* Keyboard shortcuts - subtle styling */}
-              <div className="mt-3 flex items-center justify-center gap-4 text-xs text-[#555]">
+              {/* Keyboard shortcuts - subtle styling (desktop only) */}
+              <div className="mt-3 hidden md:flex items-center justify-center gap-4 text-xs text-[#555]">
                 <div className="flex items-center gap-1.5">
                   <kbd className="px-2 py-1 bg-[#111111] border border-[#1f1f1f] rounded-md text-[#999] font-mono text-[10px] shadow-sm">Enter</kbd>
                   <span className="text-[#666]">to send</span>
@@ -272,10 +273,11 @@ export default function ChatPage() {
             </form>
           </div>
         </div>
+        </div>
       </div>
 
-      {/* Footer */}
-      <footer className="border-t border-[#1a1a1a] bg-[#0a0a0a] py-4">
+      {/* Footer (hidden on mobile) */}
+      <footer className="hidden md:block border-t border-[#1a1a1a] bg-[#02040a] py-4">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <p className="text-xs text-[#666]">

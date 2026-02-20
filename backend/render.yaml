@@ -7,6 +7,10 @@ services:
     envVars:
       - key: OPENROUTER_API_KEY
         sync: false
+      - key: OPENROUTER_CHAT_MODEL
+        value: arcee-ai/trinity-large-preview:free
+      - key: ALLOWED_ORIGINS
+        sync: false
       - key: PYTHON_VERSION
         value: 3.11
     healthCheckPath: /health
