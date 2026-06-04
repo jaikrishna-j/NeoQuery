@@ -10,23 +10,6 @@ A full-stack RAG (Retrieval-Augmented Generation) chatbot that ingests multiple 
 - **Modern UI**: Dark-themed interface with responsive design
 - **Source Citations**: Answers include references to source documents
 
-## Project Structure
-
-```
-NeoQuery/
-├── frontend/          # Next.js frontend application
-│   ├── app/           # Next.js App Router pages
-│   ├── components/    # React components
-│   └── lib/           # API utilities
-├── backend/           # FastAPI backend with RAG capabilities
-│   ├── app/
-│   │   ├── routers/   # API endpoints
-│   │   ├── services/  # Business logic
-│   │   └── repositories/ # FAISS vector storage
-│   └── main.py        # FastAPI application
-└── README.md          # This file
-```
-
 ## Supported File Types
 
 - **Text Documents**: PDF, DOC, DOCX, TXT, MD
@@ -166,7 +149,3 @@ The backend follows clean architecture principles with separate layers:
 5. **Storage**: Embeddings are stored in FAISS indexes organized by file type
 6. **Retrieval**: When you ask a question, it's converted to an embedding and used to search for relevant chunks
 7. **Generation**: Retrieved context is passed to language models via OpenRouter API to generate answers
-
-## License
-
-This project is open source and available for educational purposes.
